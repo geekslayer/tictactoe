@@ -3,6 +3,17 @@ import os
 
 #######
 
+__msg_move_already_done:str = 'A move already has been done here, please choose another square! '
+__move_must_be_valid:str = 'You must enter a valid move between 1 and 9'
+__no_winner_its_a_tie:str = 'Nobody won it\'s a tie!!!!'
+__big_winner:str = 'Player # {player_in_turn} is the big winner'
+
+__input__intro_player_x_or_o:str = 'Player 1, what do you want to be X or O? '
+__input__want_to_replay:str = 'Do you want to play a game? Type yes or y if you want to play again. '
+__input__next_move:str = f'Player {player_in_turn} play your turn '
+
+#######
+
 empty_square:str = ' '
 board = [0,1,2]
 player_symbol = [1,2]
@@ -55,7 +66,7 @@ def validate_move(move:int,x:int,y:int):
         board[y][x] = player_symbol[player_in_turn-1]
     else:
         turns_played -= 1
-        print('A move already has been done here, please choose another square! ')
+        print(__msg_move_already_done)
         next_move()
 
 def determine_index(move:int):
@@ -116,7 +127,8 @@ def print_in_game_board(position:int):
     done = is_player_winner(player_in_turn-1) or turns_played >= 9
 
 def next_move():
-    move = input(f'Player {player_in_turn} play your turn ')
+    global __input__next_move, player_in_turn
+    move = input(__input__next_move)
 
     try:
         move = int(move)
@@ -124,20 +136,20 @@ def next_move():
         pass
 
     if type(move) != int:
-        print('You must enter a valid move between 1 and 9')
+        print(__move_must_be_valid)
         next_move()
     else:
         if move >= 1 and move <= 9:
             print_in_game_board(move)
         else:
-            print('You must enter a valid move between 1 and 9')
+            print(__move_must_be_valid)
             next_move()
 
 def play_tictactoe():
     global player_symbol,player_in_turn, turns_played, done
     clear()
     
-    player_symbol[0] = input('Player 1, what do you want to be X or O? ').upper()
+    player_symbol[0] = input(__input__intro_player_x_or_o).upper()
 
     if player_symbol[0] == 'X':
         player_symbol[1] = 'O'
@@ -155,8 +167,6 @@ def play_tictactoe():
         if turns_played == 0:
             print_board()
 
-        # move = int(input(f'Player {player_in_turn} play your turn '))
-        # print_in_game_board(move)
         next_move()
 
         if done: break
@@ -167,11 +177,11 @@ def play_tictactoe():
             player_in_turn = 1
 
     if is_player_winner(player_in_turn-1):
-        print(f'Player # {player_in_turn} is the big winner')
+        print(f__big_winner)
     else:
-        print('Nobody won it is a tie!!!!')
+        print(__no_winner_its_a_tie)
 
-    answer = input('Do you want to play a game? Type yes or y if you want to play again. ').lower()
+    answer = input(__input__want_to_replay).lower()
 
     if answer == 'yes' or answer[0] == 'y':
         play_tictactoe()
@@ -179,5 +189,3 @@ def play_tictactoe():
 ###########
 
 play_tictactoe()
-# move = 8
-# print(move_mapping[move-1])
