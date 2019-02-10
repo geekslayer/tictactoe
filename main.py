@@ -98,21 +98,21 @@ def determine_index(move:int):
 def is_player_winner(player_number:int):
     global board, player_symbol
 
-    if (board[0][2] == player_symbol[player_number] and board[1][2] == player_symbol[player_number] and board[2][2] == player_symbol[player_number]):
+    if (board[0][2] == board[1][2] == board[2][2] == player_symbol[player_number]):
         return True
-    elif (board[0][1] == player_symbol[player_number] and board[1][1] == player_symbol[player_number] and board[2][1] == player_symbol[player_number]):
+    elif (board[0][1] == board[1][1] == board[2][1] == player_symbol[player_number]):
         return True
-    elif (board[0][0] == player_symbol[player_number] and board[1][0] == player_symbol[player_number] and board[2][0] == player_symbol[player_number]):
+    elif (board[0][0] == board[1][0] == board[2][0] == player_symbol[player_number]):
         return True
-    elif (board[0][0] == player_symbol[player_number] and board[0][1] == player_symbol[player_number] and board[0][2] == player_symbol[player_number]):
+    elif (board[0][0] == board[0][1] == board[0][2] == player_symbol[player_number]):
         return True
-    elif (board[1][0] == player_symbol[player_number] and board[1][1] == player_symbol[player_number] and board[1][2] == player_symbol[player_number]):
+    elif (board[1][0] == board[1][1] == board[1][2] == player_symbol[player_number]):
         return True
-    elif (board[2][0] == player_symbol[player_number] and board[2][1] == player_symbol[player_number] and board[2][2] == player_symbol[player_number]):
+    elif (board[2][0] == board[2][1] == board[2][2] == player_symbol[player_number]):
         return True
-    elif (board[0][0] == player_symbol[player_number] and board[1][1] == player_symbol[player_number] and board[2][2] == player_symbol[player_number]):
+    elif (board[0][0] == board[1][1] == board[2][2] == player_symbol[player_number]):
         return True
-    elif (board[0][2] == player_symbol[player_number] and board[1][1] == player_symbol[player_number] and board[2][0] == player_symbol[player_number]):
+    elif (board[0][2] == board[1][1] == board[2][0] == player_symbol[player_number]):
         return True
 
     return False
@@ -192,7 +192,7 @@ def play_tictactoe():
 try:
 
     play_tictactoe()
-    
+
 except KeyboardInterrupt:
     print('Game has been interupted!! Ctrl + C was pressed!!! :(')
     sys.exit()
