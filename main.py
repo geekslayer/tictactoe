@@ -1,16 +1,17 @@
 ### this will be the main program
 import os
 
+import signal
+import sys
+
 #######
 
 __msg_move_already_done:str = 'A move already has been done here, please choose another square! '
 __move_must_be_valid:str = 'You must enter a valid move between 1 and 9'
 __no_winner_its_a_tie:str = 'Nobody won it\'s a tie!!!!'
-__big_winner:str = 'Player # {player_in_turn} is the big winner'
 
 __input__intro_player_x_or_o:str = 'Player 1, what do you want to be X or O? '
 __input__want_to_replay:str = 'Do you want to play a game? Type yes or y if you want to play again. '
-__input__next_move:str = f'Player {player_in_turn} play your turn '
 
 #######
 
@@ -127,8 +128,8 @@ def print_in_game_board(position:int):
     done = is_player_winner(player_in_turn-1) or turns_played >= 9
 
 def next_move():
-    global __input__next_move, player_in_turn
-    move = input(__input__next_move)
+    global player_in_turn
+    move = input(f'Player {player_in_turn} play your turn ')
 
     try:
         move = int(move)
@@ -177,7 +178,7 @@ def play_tictactoe():
             player_in_turn = 1
 
     if is_player_winner(player_in_turn-1):
-        print(f__big_winner)
+        print(f'Player # {player_in_turn} is the big winner')
     else:
         print(__no_winner_its_a_tie)
 
@@ -188,4 +189,11 @@ def play_tictactoe():
 
 ###########
 
-play_tictactoe()
+try:
+
+    play_tictactoe()
+    
+except KeyboardInterrupt:
+    print('Game has been interupted!! Ctrl + C was pressed!!! :(')
+    sys.exit()
+    
