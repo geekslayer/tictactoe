@@ -73,25 +73,6 @@ def determine_index(move:int):
     position = move_mapping[move-1]
     validate_move(move,position[0],position[1])
 
-    # if move == 1:
-    #     validate_move(move,0,2)
-    # elif move == 2:
-    #     validate_move(move,1,2)
-    # elif move == 3:
-    #     validate_move(move,2,2)
-    # elif move == 4:
-    #     validate_move(move,0,1)
-    # elif move == 5:
-    #     validate_move(move,1,1)
-    # elif move == 6:
-    #     validate_move(move,2,1)
-    # elif move == 7:
-    #     validate_move(move,0,0)
-    # elif move == 8:
-    #     validate_move(move,1,0)
-    # elif move == 9:
-    #     validate_move(move,2,0)
-
 def is_player_winner(player_number:int):
     global board, player_symbol
 
