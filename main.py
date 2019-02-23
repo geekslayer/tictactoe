@@ -31,15 +31,12 @@ def clear():
     try:
         os.system('cls')
         cleared = True
-    except Exception as e:
+    except:
         pass
-
-    if not cleared:
-        try:
-            os.system('clear')
-            cleared = True
-        except Exception as e:
-            pass
+    else:
+        os.system('clear')
+        cleared = True
+        
 
 def init_board():
     global board, turns_played, done
