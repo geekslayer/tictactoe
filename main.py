@@ -46,9 +46,9 @@ def init_board():
 
     turns_played = 0
     done = False
-    board[0] = [empty_square,empty_square,empty_square]
-    board[1] = [empty_square,empty_square,empty_square]
-    board[2] = [empty_square,empty_square,empty_square]
+    board[0] = [empty_square]*3
+    board[1] = [empty_square]*3
+    board[2] = [empty_square]*3
 
 def print_board():
     global board
